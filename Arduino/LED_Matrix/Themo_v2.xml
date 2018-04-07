@@ -1,0 +1,218 @@
+<xml xmlns="http://www.w3.org/1999/xhtml">
+  <toolboxcategories>CAT_LOGIC,CAT_LOOPS,CAT_MATH,CAT_ARRAY,CAT_TEXT,CAT_VARIABLES,CAT_FUNCTIONS,CAT_ARDUINO,CAT_ANEMOROTATION,CAT_LCD_SCREEN,CAT_BLUETOOTH_MISC,CAT_ROBOT_MISC,CAT_I2C,CAT_SPI,CAT_APDS_9960_RGB_Gesture,CAT_HX711,CAT_OLED_U8G,CAT_LED_RGB_CHAIN,CAT_MATRIX_LED_RGB,CAT_DRONE,CAT_DFRobot,CAT_ICN,CAT_ROBUNO,CAT_FISCHERTECHNIK,CAT_FLYCAMONE,CAT_MHK,CAT_BQ,CAT_JEULIN,CAT_GROVE,CAT_MULTIFUNCTION,CAT_RFID,CAT_TECHNOZONE,CAT_MESURE,CAT_TECHNOZONE_ROBOT,CAT_POLOLU,CAT_ZUMO,CAT_ROBOTS_MOTORS,CAT_MBOT_1,CAT_MBOT_2,CAT_MBOT_3,CAT_MBOT_4,CAT_STEPPER,CAT_ESUS,CAT_MRDUINO,CAT_ARDUINO_SERVO,CAT_ADXL362,CAT_BT_ELECTRONICS,CAT_jfblocks,CAT_KEYPAD,CAT_SHARP,CAT_ETHERNET,CAT_BLYNK_CC,CAT_AUTODUINO</toolboxcategories>
+  <toolbox>toolbox_arduino_all</toolbox>
+  <block type="base_setup_loop" id="POf.G/ooc4p1@psIxL@U" x="-437" y="-413">
+    <statement name="DO">
+      <block type="serial_init" id="_4;ft9P[Tye?H)^kYw|=">
+        <field name="SPEED">115200</field>
+        <next>
+          <block type="lcd_i2c_lcdinit" id="0W5jv2~w1Rcdu:!i(NI%">
+            <field name="I2C_adress">0x27</field>
+            <field name="nbcol">16</field>
+            <field name="nblig">2</field>
+            <field name="backlight">TRUE</field>
+            <field name="cursor">FALSE</field>
+            <field name="blink">FALSE</field>
+            <next>
+              <block type="lcd_i2c_lcdwrite" id="pl`}Wi/r,9nLEv^NSKpf">
+                <value name="TEXT">
+                  <shadow type="text" id="q6vh-[hsS^URwir{DkCv">
+                    <field name="TEXT">Temperature :</field>
+                  </shadow>
+                </value>
+                <value name="COL">
+                  <shadow type="math_number" id="+pUOq*NBp4M8S_ts!MP}">
+                    <field name="NUM">0</field>
+                  </shadow>
+                </value>
+                <value name="LIG">
+                  <shadow type="math_number" id=";3L+|D^)@9_k`[Tgnc{J">
+                    <field name="NUM">0</field>
+                  </shadow>
+                </value>
+                <next>
+                  <block type="lcd_i2c_lcdwrite" id="grw6~yZSl[hBO:6Ewg:=">
+                    <value name="TEXT">
+                      <shadow type="text" id="@(}EaX-5|yk(SG8o/WJw">
+                        <field name="TEXT">Humidite :</field>
+                      </shadow>
+                    </value>
+                    <value name="COL">
+                      <shadow type="math_number" id="A,q5i:!TBg-k5cx/#`~o">
+                        <field name="NUM">0</field>
+                      </shadow>
+                    </value>
+                    <value name="LIG">
+                      <shadow type="math_number" id="q$xH7eqO%^j@y(v-F!TE">
+                        <field name="NUM">1</field>
+                      </shadow>
+                    </value>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <statement name="LOOP">
+      <block type="variables_set" id="+658Pj6kyCNNU0P%=xnx">
+        <field name="VAR">Hum</field>
+        <value name="VALUE">
+          <block type="grove_dht_read" id="Z;DafIrL@t2pH7}m,p/^">
+            <field name="TYPE">h</field>
+            <field name="SENSOR">DHT11</field>
+            <field name="PIN">5</field>
+          </block>
+        </value>
+        <next>
+          <block type="variables_set" id="s`j]W1)JM#)EK*NTr3`C">
+            <field name="VAR">Temp</field>
+            <value name="VALUE">
+              <block type="grove_dht_read" id="FS,*P$cm.Ms+qDdlao5,">
+                <field name="TYPE">C</field>
+                <field name="SENSOR">DHT11</field>
+                <field name="PIN">5</field>
+              </block>
+            </value>
+            <next>
+              <block type="serial_print_var" id="hU%;8j)_.$uny1FVfc;s">
+                <value name="Text">
+                  <shadow type="text" id="lhuxt#Mz5Vs.YL`D!-|}">
+                    <field name="TEXT">Température : </field>
+                  </shadow>
+                </value>
+                <value name="N">
+                  <shadow type="math_number" id="^QXkvk7Mt2!w#F,$et3y">
+                    <field name="NUM">0</field>
+                  </shadow>
+                  <block type="variables_get" id="h#3)YGbO2]I;Y-!;W^Y1">
+                    <field name="VAR">Temp</field>
+                  </block>
+                </value>
+                <value name="NEW_LINE">
+                  <shadow type="logic_boolean" id="~Yz@18I[28d~@Yu,ij@2">
+                    <field name="BOOL">FALSE</field>
+                  </shadow>
+                </value>
+                <next>
+                  <block type="serial_print_var" id="5;CIEKo0e-eWCQyYN=Hb">
+                    <value name="Text">
+                      <shadow type="text" id="wDnEq!`)-u1SMHxY#_(0">
+                        <field name="TEXT">   Humidité : </field>
+                      </shadow>
+                    </value>
+                    <value name="N">
+                      <shadow type="math_number" id="^QXkvk7Mt2!w#F,$et3y">
+                        <field name="NUM">0</field>
+                      </shadow>
+                      <block type="variables_get" id="n6ehUyr?{E+6[X)~|*kQ">
+                        <field name="VAR">Hum</field>
+                      </block>
+                    </value>
+                    <value name="NEW_LINE">
+                      <shadow type="logic_boolean" id="PDsw]-Z@*wE1_m8=EeV,">
+                        <field name="BOOL">TRUE</field>
+                      </shadow>
+                    </value>
+                    <next>
+                      <block type="lcd_i2c_lcdwrite" id="q/^qe1Ch~o82fiC3jnP$">
+                        <value name="TEXT">
+                          <shadow type="text" id="~+50=)!#|3gAqZ3vw$?j">
+                            <field name="TEXT"></field>
+                          </shadow>
+                          <block type="variables_get" id="FO@Q{fPv?{nK1O$*Jvfo">
+                            <field name="VAR">Temp</field>
+                          </block>
+                        </value>
+                        <value name="COL">
+                          <shadow type="math_number" id="nWu^8|61_y@*|q7Ui#DZ">
+                            <field name="NUM">14</field>
+                          </shadow>
+                        </value>
+                        <value name="LIG">
+                          <shadow type="math_number" id="c:LgNJ@:-T_.[8RObw]9">
+                            <field name="NUM">0</field>
+                          </shadow>
+                        </value>
+                        <next>
+                          <block type="lcd_i2c_lcdwrite" id="mdG(JsDb5)O+A0).tpNc">
+                            <value name="TEXT">
+                              <shadow type="text" id="~+50=)!#|3gAqZ3vw$?j">
+                                <field name="TEXT">C</field>
+                              </shadow>
+                            </value>
+                            <value name="COL">
+                              <shadow type="math_number" id="#pNm}v,3eP]Nf?*HL{:p">
+                                <field name="NUM">17</field>
+                              </shadow>
+                            </value>
+                            <value name="LIG">
+                              <shadow type="math_number" id="%a9I6%S;cbj]yAxL`|es">
+                                <field name="NUM">0</field>
+                              </shadow>
+                            </value>
+                            <next>
+                              <block type="lcd_i2c_lcdwrite" id="(]`iQvX}H*o}H?Mx66Tg">
+                                <value name="TEXT">
+                                  <shadow type="text" id="~+50=)!#|3gAqZ3vw$?j">
+                                    <field name="TEXT"></field>
+                                  </shadow>
+                                  <block type="variables_get" id="ZrF5Upa-:44Vh+LzQzaa">
+                                    <field name="VAR">Hum</field>
+                                  </block>
+                                </value>
+                                <value name="COL">
+                                  <shadow type="math_number" id="iAN52y5A)kO#t/JqpWq-">
+                                    <field name="NUM">14</field>
+                                  </shadow>
+                                </value>
+                                <value name="LIG">
+                                  <shadow type="math_number" id="6~boqLUW8MLW8n34[bhb">
+                                    <field name="NUM">1</field>
+                                  </shadow>
+                                </value>
+                                <next>
+                                  <block type="lcd_i2c_lcdwrite" id="^F5M;(IqHf}pX{R,X%dA">
+                                    <value name="TEXT">
+                                      <shadow type="text" id="NS$[BYhS*Rf(3+a#z`%t">
+                                        <field name="TEXT">%</field>
+                                      </shadow>
+                                    </value>
+                                    <value name="COL">
+                                      <shadow type="math_number" id="GG]-;nZTAXV8Kb?B^FGD">
+                                        <field name="NUM">17</field>
+                                      </shadow>
+                                    </value>
+                                    <value name="LIG">
+                                      <shadow type="math_number" id="yfRffc?znf4`=U2p|x5!">
+                                        <field name="NUM">1</field>
+                                      </shadow>
+                                    </value>
+                                    <next>
+                                      <block type="base_delay" id="SP*a)hd;aDELKW`/WYS*">
+                                        <value name="DELAY_TIME">
+                                          <shadow type="math_number" id=".Er^8ycvYk?//(SDp[r.">
+                                            <field name="NUM">1000</field>
+                                          </shadow>
+                                        </value>
+                                      </block>
+                                    </next>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+</xml>
